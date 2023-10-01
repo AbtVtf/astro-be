@@ -8,12 +8,14 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const tarotRoutes_1 = __importDefault(require("./routes/tarotRoutes"));
 const affirmationRoutes_1 = __importDefault(require("./routes/affirmationRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const astrogramRoutes_1 = __importDefault(require("./routes/astrogramRoutes"));
 const userAuth_1 = __importDefault(require("./userAuth"));
 const app = (0, express_1.default)();
 const port = 3000;
 dotenv_1.default.config();
 app.use(express_1.default.json());
 app.use('/api', userRoutes_1.default);
+app.use('/api', userAuth_1.default, astrogramRoutes_1.default);
 app.use('/api', userAuth_1.default, tarotRoutes_1.default);
 app.use('/api', userAuth_1.default, affirmationRoutes_1.default);
 app.listen(port, () => {

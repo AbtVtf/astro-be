@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import tarotRoutes from './routes/tarotRoutes';
 import affirmationRoutes from "./routes/affirmationRoutes"
 import userRoutes from "./routes/userRoutes"
+import astrogramRoutes from "./routes/astrogramRoutes"
 import authenticateUser from './userAuth';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/api', userRoutes); 
 
+app.use('/api', authenticateUser,astrogramRoutes); 
 app.use('/api', authenticateUser, tarotRoutes); 
 app.use('/api', authenticateUser, affirmationRoutes);
 

@@ -1,31 +1,31 @@
 Table List:
-zodiacs
 
+zodiacs
 Fields:
 zodiac_id (Primary Key)
 name
 start_date
 end_date
-crystals
 
+crystals
 Fields:
 crystal_id (Primary Key)
 name
 description
-zodiacs_crystals
 
+zodiacs_crystals
 Fields:
 zodiac_id (Foreign Key & Part of Composite Primary Key)
 crystal_id (Foreign Key & Part of Composite Primary Key)
-users
 
+users
 Fields:
 user_id (Primary Key)
 username
 email
 password
-user_zodiacs
 
+user_zodiacs
 Fields:
 user_id (Foreign Key & Part of Composite Primary Key)
 zodiac_id (Foreign Key & Part of Composite Primary Key)
@@ -34,29 +34,30 @@ user_crystals
 Fields:
 user_id (Foreign Key & Part of Composite Primary Key)
 crystal_id (Foreign Key & Part of Composite Primary Key)
-affirmations
 
+affirmations
 Fields:
 affirmation_id (Primary Key)
 user_id (Foreign Key)
 affirmation_text
-tarot_readings
 
+tarot_readings
 Fields:
 reading_id (Primary Key)
 user_id (Foreign Key)
 card_name
 card_interpretation
-houses
 
+houses
 Fields:
 house_id (Primary Key)
 name
-planets
 
+planets
 Fields:
 planet_id (Primary Key)
 name
+
 Relationships:
 zodiacs_crystals
 

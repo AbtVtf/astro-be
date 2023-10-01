@@ -1,3 +1,9 @@
+
+var mysql = require('mysql2/promise');
+var dotenv = require('dotenv');
+
+dotenv.config();
+
 const zodiacs_crystals = [
     ['Aries', 'Red Jasper'],
     ['Aries', 'Bloodstone'],
@@ -121,11 +127,6 @@ const planets = [
   'Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 
   'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'
 ];
-
-var mysql = require('mysql2/promise');
-var dotenv = require('dotenv');
-
-dotenv.config();
 
 function runScript() {
   mysql.createConnection({
@@ -317,4 +318,33 @@ async function createTables2() {
   }
 }
 
+async function createTables3() {
+  try {
+    const connection = await mysql.createConnection({
+      host: "containers-us-west-196.railway.app",
+      user: "root",
+      password: "opPgrkqMMwJFUyepv5Wo",
+      database: "railway",
+      port: 6676
+    });
+  
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS planetary_positions (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT,
+        planet_id INT,
+        sign_no INT,
+        house_id INT,
+        interpretation TEXT,
+        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        FOREIGN KEY (planet_id) REFERENCES planets(planet_id),
+        FOREIGN KEY (house_id) REFERENCES houses(house_id)
+      );
+    `);
+    console.log('Tables created successfully.');
+  } catch (error) {
+    console.error('Error creating tables:', error);
+  }
+}
 
+createTables3()
